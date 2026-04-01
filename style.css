@@ -1,0 +1,197 @@
+    :root {
+    --black: #0a0a0a;
+    --gold: #d4af37;
+    --white: #ffffff;
+    --gray: #f4f4f4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    padding: 2rem 5%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+}
+
+.logo span { color: var(--gold); font-weight: 300; margin-left: 5px; }
+
+/* Intro */
+.intro {
+    text-align: center;
+    padding: 100px 10%;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 10vw, 6rem);
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+h1 span {
+    color: var(--gold);
+    font-style: italic;
+}
+
+.intro p {
+    color: #888;
+    max-width: 500px;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+/* Galerie */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: 400px;
+    grid-auto-flow: dense;
+    gap: 20px;
+    padding: 0 5% 100px;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    background: #1a1a1a;
+    border-radius: 4px;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+/* Effets de grille asymétrique */
+.tall { grid-row: span 2; }
+.wide { grid-column: span 2; }
+
+/* Overlay */
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+    display: flex;
+    align-items: flex-end;
+    padding: 30px;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.card-info {
+    transform: translateY(20px);
+    transition: 0.5s;
+}
+
+.card-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+}
+
+.card-info span {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ccc;
+}
+
+/* Hover */
+.card:hover img {
+    transform: scale(1.1);
+}
+
+.card:hover .card-overlay {
+    opacity: 1;
+}
+
+.card:hover .card-info {
+    transform: translateY(0);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 50px;
+    border-top: 1px solid #222;
+    color: #444;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .wide { grid-column: span 1; }
+    .gallery-grid { grid-auto-rows: 350px; }
+}
+
+/* --- Styles des Filtres --- */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--white);
+    padding: 10px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(5px);
+}
+
+.filter-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.filter-btn.active {
+    background: var(--gold);
+    color: var(--black);
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* --- Animation des Cartes --- */
+.card {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.card[style*="display: none"] {
+    transform: scale(0.8);
+}
